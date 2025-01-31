@@ -19,3 +19,14 @@ npm install
 ### 3. Abra o projeto em seu navegador
 Após as dependências serem instaladas, basta abrir o arquivo ```index.html``` em seu navegador para visualizar o formulário em funcionamento.
 
+ou
+
+Instale o live server: 
+```bash
+npm install -g live-server
+```
+Para abrir o projeto no navegador:
+```bash
+live-server
+```
+

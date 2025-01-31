@@ -38,4 +38,5 @@ body {
     flex-grow: 1;
     display: flex;
     justify-content: center;
+    position: relative;
 }

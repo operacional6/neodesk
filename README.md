@@ -2,31 +2,18 @@
 
 Este é um formulário conversacional simples desenvolvido com a biblioteca Conversational Form. O objetivo é permitir que os usuários registrem demandas ou problemas de forma interativa.
 
-## Como rodar o projeto
+## 🔧 Requisitos
+
+- **Docker e Docker Compose**
+
+## 🚀 Como rodar o projeto
 
 ### 1. Clone o repositório
 
+### 2. Suba os containers
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
-cd nome-do-repositorio
+docker compose up --build
 ```
 
-### 2. Instale as dependências
-```bash
-npm install
-```
-
-### 3. Abra o projeto em seu navegador
-Após as dependências serem instaladas, basta abrir o arquivo ```index.html``` em seu navegador para visualizar o formulário em funcionamento.
-
-ou
-
-Instale o live server: 
-```bash
-npm install -g live-server
-```
-Para abrir o projeto no navegador:
-```bash
-live-server
-```
-
+### 3. Acesse no navegador
+http://localhost:8080

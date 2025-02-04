@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário Conversacional</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="node_modules/conversational-form/dist/conversational-form.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/node_modules/conversational-form/dist/conversational-form.min.css">
 </head>
 <body>
     <div class="container">
@@ -16,7 +16,7 @@
         <div id="cf-context">
             <form id="form">
                 <fieldset cf-questions="Qual sistema ou serviço está apresentando o problema?" cf-input-placeholder="Escolha uma das opções acima..">
-                    <input type="radio" name="sistema" value="Hub" cf-label="Hub" tabindex="-1" >
+                    <input type="radio" name="sistema" value="Hub" cf-label="Hub" tabindex="-1">
                     <input type="radio" name="sistema" value="Polopoly" cf-label="Polopoly" tabindex="-1">
                     <input type="radio" name="sistema" value="Neo Composer" cf-label="Neo Composer" tabindex="-1">
                     <input type="radio" name="sistema" value="Intera" cf-label="Intera" tabindex="-1">
@@ -24,14 +24,14 @@
                     <input type="radio" name="sistema" value="Oráculo" cf-label="Matérias Automáticas" tabindex="-1">
                     <input type="radio" name="sistema" value="Outro" cf-label="Outro" tabindex="-1">
                 </fieldset>
- 
+
                 <fieldset cf-questions="Qual é o tipo de problema?" cf-input-placeholder="Escolha uma das opções acima..">
                     <input type="radio" name="tipo" value="Erro na interface" cf-label="Erro na interface (botões, menus, layout, carregamento incorreto)" tabindex="-1">
                     <input type="radio" name="tipo" value="Falha em funcionalidade" cf-label="Falha em funcionalidade (ação não concluída, resposta inesperada)" tabindex="-1">
                     <input type="radio" name="tipo" value="Problema nos dados" cf-label="Problema nos dados (informações erradas, ausentes)" tabindex="-1">
                     <input type="radio" name="tipo" value="Desempenho ruim" cf-label="Desempenho ruim (lentidão, travamentos)" tabindex="-1">
                 </fieldset>
- 
+
                 <input cf-questions="Descreva o problema:" type="text" name="descricao" cf-input-placeholder="Descreva detalhadamente o problema..." tabindex="-1">
                 <input cf-questions="Qual é o seu e-mail para contato?" type="email" name="email" cf-input-placeholder="Digite seu e-mail..." tabindex="-1">
                 <input cf-questions="Quem é o seu gestor imediato?" type="text" name="gestor" cf-input-placeholder="Digite o nome do gestor..." tabindex="-1">
@@ -39,7 +39,8 @@
         </div>
     </div>
 
-    <script src="node_modules/conversational-form/dist/conversational-form.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/node_modules/conversational-form/dist/conversational-form.min.js"></script>
 </body>
 </html>

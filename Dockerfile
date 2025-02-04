@@ -2,11 +2,11 @@ FROM node:18
 
 WORKDIR /app
 
-COPY package*.json ./
-COPY . .
+COPY package.json package-lock.json ./
 
 RUN npm install
 
+COPY . .
 EXPOSE 8080
 
-CMD ["npx", "live-server", "--port=8080", "--host=0.0.0.0"]
+CMD ["node", "server.js"]

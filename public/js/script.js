@@ -1,4 +1,5 @@
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", function () {
+    
     const cf = window.cf.ConversationalForm.startTheConversation({
         formEl: document.getElementById("form"),
         context: document.getElementById("cf-context"),
@@ -43,6 +44,28 @@ window.onload = function() {
                 name: "gestor",
                 input: "text"
             }
-        ]
+        ],
+        submitCallback: function () {
+            const formData = cf.getFormData();
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            const jsonString = JSON.stringify(formObject);
+        
+            axios.post("http://localhost:8080/asana", jsonString, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => {
+                console.log("Resposta do servidor:", response.data);
+                alert("Tarefa criada com sucesso no Asana!");
+            })
+            .catch(error => {
+                console.error("Erro na comunicação com o servidor:", error);
+                alert("Erro ao tentar enviar o formulário.");
+            });
+        }
     });
-};
+});

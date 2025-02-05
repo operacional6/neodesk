@@ -3,28 +3,24 @@ require('dotenv').config();
 
 const token = process.env.ASANA_ACCESS_TOKEN;
 const workspaceId = process.env.ASANA_WORKSPACE_ID;
+const projectId = process.env.ASANA_PROJECT_ID;
 const assigneeId = process.env.ASANA_ASSIGNEE_ID;
-
-console.log('Access Token:', token);
-console.log('Workspace ID:', workspaceId);
-console.log('Assignee ID:', assigneeId);
 
 function generateTAPID() {
     return "TAP" + Math.floor(100000 + Math.random() * 900000);
 }
   
   async function sendToAsana(formData) {
-      console.log('formData' + formData);
     try {
       const tapID = generateTAPID();
   
       const taskData = {
         "data": {
-          "workspace": `${process.env.ASANA_WORKSPACE_ID}`,  
-          "assignee": `${process.env.ASANA_ASSIGNEE_ID}`, 
+          "workspace": `${workspaceId}`,  
+          "assignee": `${assigneeId}`, 
+          "projects": `${projectId}`,
           "name": `Novo TAP: ${formData.sistema}`,
           "notes": `**Tipo:** ${formData.tipo}\n**Descrição:** ${formData.descricao}\n**E-mail:** ${formData.email}\n**Gestor:** ${formData.gestor}\n**TAP ID:** ${tapID}`,
-          // Caso você tenha campos personalizados, descomente e ajuste a seguir:
           // custom_fields: {
           //   "ID_CAMPO_GESTOR": formData.gestor,
           //   "ID_CAMPO_EMAIL": formData.email,
@@ -40,7 +36,7 @@ function generateTAPID() {
         taskData,
         {
           headers: {
-            "Authorization": `Bearer ${process.env.ASANA_ACCESS_TOKEN}`,
+            "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
           }
         }

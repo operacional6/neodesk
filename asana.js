@@ -16,16 +16,16 @@ function generateTAPID() {
   
       const taskData = {
         "data": {
-          "workspace": `${workspaceId}`,  
-          "assignee": `${assigneeId}`, 
-          "projects": `${projectId}`,
+          "workspace": workspaceId,  
+          "assignee": assigneeId, 
+          "projects": projectId,
           "name": `Novo TAP: ${formData.sistema}`,
           "notes": `**Tipo:** ${formData.tipo}\n**Descrição:** ${formData.descricao}\n**E-mail:** ${formData.email}\n**Gestor:** ${formData.gestor}\n**TAP ID:** ${tapID}`,
-          // custom_fields: {
-          //   "ID_CAMPO_GESTOR": formData.gestor,
-          //   "ID_CAMPO_EMAIL": formData.email,
-          //   "ID_CAMPO_TAPID": tapID
-          // }
+          "custom_fields": {
+            "1209334302156561": formData.gestor,
+            "1209334302156563": formData.email,
+            "1209334302156565": tapID
+          }
         }
       };
   
@@ -43,7 +43,7 @@ function generateTAPID() {
       );
   
       console.log("Tarefa criada com sucesso:", response.data);
-      return response.data;
+      return { data: response.data, tapID };
     } catch (error) {
       console.error("Erro ao criar tarefa no Asana:", error.response ? error.response.data : error.message);
       throw error;

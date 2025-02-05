@@ -60,11 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(response => {
                 console.log("Resposta do servidor:", response.data);
-                alert("Tarefa criada com sucesso no Asana!");
+                cf.addRobotChatResponse(`Obrigado! Seu pedido foi registrado com ID ${response.data.tapID}. Nossa equipe retornará em breve.`);
             })
             .catch(error => {
                 console.error("Erro na comunicação com o servidor:", error);
-                alert("Erro ao tentar enviar o formulário.");
+                cf.addRobotChatResponse("Ocorreu um erro ao enviar sua solicitação. Por favor, tente novamente mais tarde.");
             });
         }
     });

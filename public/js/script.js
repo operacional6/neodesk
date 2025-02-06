@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             const jsonString = JSON.stringify(formObject);
         
-            axios.post("http://localhost:8080/asana", jsonString, {
+            axios.post("/asana", jsonString, {
                 headers: {
                     "Content-Type": "application/json"
                 }

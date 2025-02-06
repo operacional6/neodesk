@@ -6,7 +6,7 @@ Este é um formulário conversacional simples desenvolvido com a biblioteca Conv
 
 - **Docker e Docker Compose**
 
-## 🚀 Como rodar o projeto
+## Como rodar o projeto
 
 ### 1. Clone o repositório
 

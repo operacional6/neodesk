@@ -4,28 +4,21 @@ const app = express();
 require('dotenv').config();
 const sendToAsana = require("./asana"); 
 
+const cors = require("cors");
+app.use(cors());
+
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use(express.json());
 
-app.use((req, res, next) => {     
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");     
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
-
-  next(); 
-});
-
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.setHeader("Content-Type", "text/html");
+
+  res.setHeader("Access-Control-Allow-Origin", "*"); 
 });
 
 app.get("/teste", async (req, res) => {
-  console.log("teste");
   res.json({
     mensagem: "Requisição GET recebida com sucesso!",
     status: "ok",

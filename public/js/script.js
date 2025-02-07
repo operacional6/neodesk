@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     {label: "Erro na interface", value: "Erro na interface"},
                     {label: "Falha em funcionalidade", value: "Falha em funcionalidade"},
                     {label: "Problema nos dados", value: "Problema nos dados"},
-                    {label: "Desempenho ruim", value: "Desempenho ruim"}
+                    {label: "Desempenho ruim", value: "Desempenho ruim"},
+                    {label: "Outro", value: "Outro"},
                 ]
             },
             {

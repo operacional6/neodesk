@@ -27,7 +27,7 @@ app.get("/teste", async (req, res) => {
 });
 
 
-app.get("/asana", async (req, res) => {
+app.post("/asana", async (req, res) => {
   try {
     const resultado = await sendToAsana(req.body);
     res.json(resultado);  

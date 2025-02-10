@@ -34,8 +34,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     {label: "Bloqueia atividades essenciais", value: "Bloqueia atividades essenciais"},
                     {label: "Prejudica, mas consigo continuar", value: "Prejudica, mas consigo continuar"},
                     {label: "Incômodo, mas tem solução alternativa", value: "Incômodo, mas tem solução alternativa"},
-                    {label: "OutNão impacta, só queria informar", value: "Não impacta, só queria informar"},
+                    {label: "Não impacta, só queria informar", value: "Não impacta, só queria informar"},
                 ]
+            },
+            {
+                question: "Envie um print da tela para entendermos melhor o problema:",
+                name: "screenshot",
+                input: "file"
             },
             {
                 question: "Qual é o seu e-mail para contato?",
@@ -55,15 +60,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 formObject[key] = value;
             });
             const jsonString = JSON.stringify(formObject);
-        
+
+            console.log(jsonString);
+            
             axios.post("/asana", jsonString, {
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
             .then(response => {
-                console.log("Resposta do servidor:", response.data);
-                cf.addRobotChatResponse(`Obrigado! Seu pedido foi registrado com ID ${response.data.tapID}. Nossa equipe retornará em breve.`);
+                if (response.data) {
+                    console.log("Resposta do servidor:", response.data);
+                    cf.addRobotChatResponse(`Obrigado! Seu pedido foi registrado com ID ${response.data.tapID}. Nossa equipe retornará em breve.`);
+                }
             })
             .catch(error => {
                 console.error("Erro na comunicação com o servidor:", error);

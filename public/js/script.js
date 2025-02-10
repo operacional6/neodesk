@@ -5,35 +5,37 @@ document.addEventListener("DOMContentLoaded", function () {
         context: document.getElementById("cf-context"),
         data: [
             {
-                question: "Qual sistema ou serviço está apresentando o problema?",
-                name: "sistema",
-                input: "radio",
-                options: [
-                    {label: "Hub", value: "Hub"},
-                    {label: "Polopoly", value: "Polopoly"},
-                    {label: "Neo Composer", value: "Neo Composer"},
-                    {label: "Intera", value: "Intera"},
-                    {label: "Diário do Nordeste", value: "Diário do Nordeste"},
-                    {label: "Oráculo", value: "Oráculo"},
-                    {label: "Outro", value: "Outro"}
-                ]
+                question: "Descreva bremente o problema:",
+                name: "descricao",
+                input: "text"
             },
             {
                 question: "Qual é o tipo de problema?",
                 name: "tipo",
                 input: "radio",
                 options: [
-                    {label: "Erro na interface", value: "Erro na interface"},
-                    {label: "Falha em funcionalidade", value: "Falha em funcionalidade"},
-                    {label: "Problema nos dados", value: "Problema nos dados"},
-                    {label: "Desempenho ruim", value: "Desempenho ruim"},
+                    {label: "Algo aparece errado na página", value: "Algo aparece errado na página"},
+                    {label: "O sistema não faz o que deveria", value: "O sistema não faz o que deveria"},
+                    {label: "Lentidão, travamentos", value: "Lentidão, travamentos"},
                     {label: "Outro", value: "Outro"},
                 ]
             },
             {
-                question: "Descreva o problema:",
+                question: "Descreva brevemente o problema:",
                 name: "descricao",
-                input: "text"
+                input: "text",
+                conditions: [{ field: "tipo", value: "Outro" }]
+            },
+            {
+                question: "O quanto isso está atrapalhando seu trabalho?",
+                name: "impacto",
+                input: "radio",
+                options: [
+                    {label: "Bloqueia atividades essenciais", value: "Bloqueia atividades essenciais"},
+                    {label: "Prejudica, mas consigo continuar", value: "Prejudica, mas consigo continuar"},
+                    {label: "Incômodo, mas tem solução alternativa", value: "Incômodo, mas tem solução alternativa"},
+                    {label: "OutNão impacta, só queria informar", value: "Não impacta, só queria informar"},
+                ]
             },
             {
                 question: "Qual é o seu e-mail para contato?",

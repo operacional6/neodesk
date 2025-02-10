@@ -15,25 +15,21 @@
         </div>
         <div id="cf-context">
             <form id="form">
-                <fieldset cf-questions="Qual sistema ou serviço está apresentando o problema?" cf-input-placeholder="Escolha uma das opções acima..">
-                    <input type="radio" name="sistema" value="Hub" cf-label="Hub" tabindex="-1">
-                    <input type="radio" name="sistema" value="Polopoly" cf-label="Polopoly" tabindex="-1">
-                    <input type="radio" name="sistema" value="Neo Composer" cf-label="Neo Composer" tabindex="-1">
-                    <input type="radio" name="sistema" value="Intera" cf-label="Intera" tabindex="-1">
-                    <input type="radio" name="sistema" value="Diário do Nordeste" cf-label="Diário do Nordeste" tabindex="-1">
-                    <input type="radio" name="sistema" value="Oráculo" cf-label="Matérias Automáticas" tabindex="-1">
-                    <input type="radio" name="sistema" value="Outro" cf-label="Outro" tabindex="-1">
-                </fieldset>
-
-                <fieldset cf-questions="Qual é o tipo de problema?" cf-input-placeholder="Escolha uma das opções acima..">
-                    <input type="radio" name="tipo" value="Erro na interface" cf-label="Erro na interface (botões, menus, layout, carregamento incorreto)" tabindex="-1">
-                    <input type="radio" name="tipo" value="Falha em funcionalidade" cf-label="Falha em funcionalidade (ação não concluída, resposta inesperada)" tabindex="-1">
-                    <input type="radio" name="tipo" value="Problema nos dados" cf-label="Problema nos dados (informações erradas, ausentes)" tabindex="-1">
+                <input cf-questions="Para começarmos, cole o link do sistema onde você encontrou o problema. Isso nos ajuda a identificar rapidamente!" type="text" name="link" cf-input-placeholder="Cole o link do sistema..." tabindex="-1">
+                <fieldset cf-questions="Qual é o tipo de problema?" cf-input-placeholder="Escolha uma das opções abaixo...">
+                    <input type="radio" name="tipo" value="Algo aparece errado na página" cf-label="Algo aparece errado na página" tabindex="-1">
+                    <input type="radio" name="tipo" value="O sistema não faz o que deveria" cf-label="O sistema não faz o que deveria" tabindex="-1">
+                    <input type="radio" name="tipo" value="Lentidão, travamentos" cf-label="Lentidão, travamentos" tabindex="-1">
                     <input type="radio" name="tipo" value="Desempenho ruim" cf-label="Desempenho ruim (lentidão, travamentos)" tabindex="-1">
                     <input type="radio" name="tipo" value="Outro" cf-label="Outro" tabindex="-1">
                 </fieldset>
-
-                <input cf-questions="Descreva o problema:" type="text" name="descricao" cf-input-placeholder="Descreva detalhadamente o problema..." tabindex="-1">
+                <input cf-questions="Descreva brevemente o problema:" type="text" name="descricao" cf-input-placeholder="Descreva brevemente o problema..." tabindex="-1" cf-conditional-tipo="Outro">
+                <fieldset cf-questions="O quanto isso está atrapalhando seu trabalho?" cf-input-placeholder="Escolha uma das opções abaixo...">
+                    <input type="radio" name="impacto" value="Bloqueia atividades essenciais" cf-label="Bloqueia atividades essenciais" tabindex="-1">
+                    <input type="radio" name="impacto" value="Prejudica, mas consigo continuar" cf-label="Prejudica, mas consigo continuar" tabindex="-1">
+                    <input type="radio" name="impacto" value="Incômodo, mas tem solução alternativa" cf-label="Incômodo, mas tem solução alternativa" tabindex="-1">
+                    <input type="radio" name="impacto" value="Não impacta, só queria informar" cf-label="Não impacta, só queria informar" tabindex="-1">
+                </fieldset>
                 <input cf-questions="Qual é o seu e-mail para contato?" type="email" name="email" cf-input-placeholder="Digite seu e-mail..." tabindex="-1">
                 <input cf-questions="Quem é o seu gestor imediato?" type="text" name="gestor" cf-input-placeholder="Digite o nome do gestor..." tabindex="-1">
             </form>

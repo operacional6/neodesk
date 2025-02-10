@@ -20,12 +20,12 @@ function generateTAPID() {
           "assignee": assigneeId, 
           "projects": projectId,
           "name": `Novo TAP: ${formData.sistema}`,
-          "notes": `**Tipo:** ${formData.tipo}\n**Descrição:** ${formData.descricao}\n**E-mail:** ${formData.email}\n**Gestor:** ${formData.gestor}\n**TAP ID:** ${tapID}`,
-          "custom_fields": {
-            "1209334302156561": formData.gestor,
-            "1209334302156563": formData.email,
-            "1209334302156565": tapID
-          }
+          "notes": `*Link do problema: ${formData.link}\n*Tipo: ${formData.tipo}\n ${"*Descrição:" + formData.descricao || ""}\n*Impacto: ${formData.impacto}\n*E-mail: ${formData.email}\n*Gestor Imediato: ${formData.gestor}\n*TAP ID: ${tapID}`,
+          // "custom_fields": {
+          //   "1209334302156561": formData.gestor,
+          //   "1209334302156563": formData.email,
+          //   "1209334302156565": tapID
+          // }
         }
       };
   

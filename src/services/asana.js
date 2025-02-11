@@ -3,9 +3,7 @@ require('dotenv').config();
 const uploadFile = require('./upload-file');
 
 const token = process.env.ASANA_ACCESS_TOKEN;
-const workspaceId = process.env.ASANA_WORKSPACE_ID;
 const projectId = process.env.ASANA_PROJECT_ID;
-const assigneeId = process.env.ASANA_ASSIGNEE_ID;
 
 function generateTAPID() {
     return "TAP" + Math.floor(100000 + Math.random() * 900000);
@@ -22,8 +20,6 @@ async function sendToAsana(formJsonData) {
 
         const taskData = {
             data: {
-                workspace: workspaceId,
-                assignee: assigneeId,
                 projects: projectId,
                 name: `Novo TAP: ${tapID}`,
                 notes: formJsonData.descricao || "",

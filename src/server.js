@@ -1,20 +1,20 @@
 const express = require("express");
-const path = require("path");
-const app = express();
-require('dotenv').config();
-const sendToAsana = require("./asana"); 
-
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
+const path = require("path");
+const sendToAsana = require("./services/asana");
+require('dotenv').config();
+
+const app = express();
+
+app.use(fileUpload());
 app.use(cors());
-
-
-app.use(express.static(path.join(__dirname, "public")));
-app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.join(__dirname, "../public")));
+app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 app.use(express.json());
 
 app.get('/', (req, res) => {
   res.setHeader("Content-Type", "text/html");
-
   res.setHeader("Access-Control-Allow-Origin", "*"); 
 });
 
@@ -29,8 +29,14 @@ app.get("/teste", async (req, res) => {
 
 app.post("/asana", async (req, res) => {
   try {
-    const resultado = await sendToAsana(req.body);
-    res.json(resultado);  
+      const formData = req.body;
+      if (req.files && req.files.anexo) {
+        formData.anexo = req.files.anexo;
+      }
+      console.log("Dados recebidos no servidor:", formData);
+  
+      const resultado = await sendToAsana(formData);
+      res.json(resultado);
   } catch (error) {
     res.status(500).json({ erro: "Erro ao criar tarefa no Asana." });
   }

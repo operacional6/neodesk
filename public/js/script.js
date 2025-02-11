@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
         context: document.getElementById("cf-context"),
         data: [
             {
-                question: "Descreva bremente o problema:",
-                name: "descricao",
+                question: "Para começarmos, cole o link do sistema onde você encontrou o problema. Isso nos ajuda a identificar rapidamente!",
+                name: "link",
                 input: "text"
             },
             {
@@ -39,8 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             {
                 question: "Envie um print da tela para entendermos melhor o problema:",
-                name: "screenshot",
-                input: "file"
+                name: "anexo",
+                input: "file",
+                accept: "image/*",
             },
             {
                 question: "Qual é o seu e-mail para contato?",
@@ -54,18 +55,28 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         ],
         submitCallback: function () {
-            const formData = cf.getFormData();
+            const cfData = cf.getFormData();
             const formObject = {};
-            formData.forEach((value, key) => {
+            cfData.forEach((value, key) => {
                 formObject[key] = value;
             });
-            const jsonString = JSON.stringify(formObject);
+            console.log("Dados do formulário (objeto):", formObject);
 
-            console.log(jsonString);
+            const formData = new FormData();
+            Object.keys(formObject).forEach(key => {
+              formData.append(key, formObject[key]);
+            });
+
+            const fileInput = document.querySelector('input[name="anexo"]');
+            if (fileInput && fileInput.files.length > 0) {
+                formData.set("anexo", fileInput.files[0], fileInput.files[0].name);
+            } else {
+                console.log("Nenhum arquivo selecionado no campo anexo.");
+            }
             
-            axios.post("/asana", jsonString, {
+            axios.post("/asana", formData, {
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "multipart/form-data"
                 }
             })
             .then(response => {

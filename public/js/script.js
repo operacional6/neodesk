@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => {
                 if (response.data) {
                     console.log("Resposta do servidor:", response.data);
-                    cf.addRobotChatResponse(`Obrigado! Seu pedido foi registrado com ID ${response.data.tapID}. Nossa equipe retornará em breve.`);
+                    cf.addRobotChatResponse(`Obrigado! Seu relato foi registrado com ID ${response.data.tapID}. Nossa equipe irá analisar e entraremos em contato se precisarmos de mais informações.`);
                 }
             })
             .catch(error => {

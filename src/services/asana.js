@@ -26,7 +26,15 @@ async function sendToAsana(formJsonData) {
                 assignee: assigneeId,
                 projects: projectId,
                 name: `Novo TAP: ${tapID}`,
-                notes: `*Link: ${formJsonData.link}\n*Tipo: ${formJsonData.tipo}\n${"*Descrição: " + formJsonData.descricao || ""}\n*Impacto: ${formJsonData.impacto}\n*E-mail: ${formJsonData.email}\n*Gestor Imediato: ${formJsonData.gestor}\n*TAP ID: ${tapID}`
+                notes: formJsonData.descricao || "",
+                custom_fields: {
+                    "1209334302156565": tapID,
+                    "1209378313300633": formJsonData.link,
+                    "1209378317332652": formJsonData.tipo,
+                    "1209378240371680": formJsonData.impacto,
+                    "1209334302156563": formJsonData.email,
+                    "1209334302156561": formJsonData.gestor,
+                  }
             }
         };
 

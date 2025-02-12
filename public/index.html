@@ -11,28 +11,32 @@
     <div class="container">
         <div class="description">
             <h1>Olá, eu sou o <strong>NeoDesk</strong>! 🤖</h1>
-            <p><strong>Registre seu problema</strong> e vamos <strong>resolver isso juntos</strong>!</p>
+            <p><strong>Registre sua solicitação</strong> e vamos <strong>resolver isso juntos</strong>!</p>
         </div>
         <div id="cf-context">
             <form id="form">
                 <input cf-questions="Para começarmos, cole o link do sistema onde você encontrou o problema. Isso nos ajuda a identifica-lo rapidamente!" type="text" name="link" cf-input-placeholder="Cole o link do sistema..." tabindex="-1" cf-error="Este campo é obrigatório!" required>
                 <fieldset cf-questions="Qual é o tipo de problema?" cf-input-placeholder="Escolha uma das opções abaixo..." cf-error="Este campo é obrigatório!" required>
-                    <input type="radio" name="tipo" value="Algo aparece errado na página" cf-label="Algo aparece errado na página" tabindex="-1">
-                    <input type="radio" name="tipo" value="O sistema não faz o que deveria" cf-label="O sistema não faz o que deveria" tabindex="-1">
-                    <input type="radio" name="tipo" value="Lentidão, travamentos" cf-label="Lentidão, travamentos" tabindex="-1">
-                    <input type="radio" name="tipo" value="Desempenho ruim" cf-label="Desempenho ruim (lentidão, travamentos)" tabindex="-1">
-                    <input type="radio" name="tipo" value="Outro" cf-label="Outro" tabindex="-1">
+                    <input type="radio" name="tipo" value="1209389467800061" cf-label="Algo aparece errado na página" tabindex="-1">
+                    <input type="radio" name="tipo" value="1209389467800062" cf-label="O sistema não faz o que deveria" tabindex="-1">
+                    <input type="radio" name="tipo" value="1209389467800063" cf-label="Lentidão, travamentos" tabindex="-1">
+                    <input type="radio" name="tipo" value="1209265702520456" cf-label="Outro" tabindex="-1">
                 </fieldset>
-                <input cf-questions="Descreva brevemente o problema:" type="text" name="descricao" cf-input-placeholder="Descreva brevemente o problema..." tabindex="-1" maxlength="200" cf-error="Tamanho máximo de 150 caracteres!" cf-conditional-tipo="Outro">
+                <input cf-questions="Descreva brevemente o problema:" type="text" name="descricao" cf-input-placeholder="Descreva brevemente o problema..." tabindex="-1" maxlength="200" cf-error="Tamanho máximo de 150 caracteres!" cf-conditional-tipo="1209265702520456">
                 <fieldset cf-questions="O quanto isso está atrapalhando seu trabalho?" cf-input-placeholder="Escolha uma das opções abaixo..." cf-error="Este campo é obrigatório!" required>
-                    <input type="radio" name="impacto" value="Bloqueia atividades essenciais" cf-label="Bloqueia atividades essenciais" tabindex="-1">
-                    <input type="radio" name="impacto" value="Prejudica, mas consigo continuar" cf-label="Prejudica, mas consigo continuar" tabindex="-1">
-                    <input type="radio" name="impacto" value="Incômodo, mas tem solução alternativa" cf-label="Incômodo, mas tem solução alternativa" tabindex="-1">
-                    <input type="radio" name="impacto" value="Não impacta, só queria informar" cf-label="Não impacta, só queria informar" tabindex="-1">
+                    <input type="radio" name="impacto" value="1209265702520459" cf-label="Bloqueia atividades essenciais" tabindex="-1">
+                    <input type="radio" name="impacto" value="1209265702520460" cf-label="Prejudica, mas consigo continuar" tabindex="-1">
+                    <input type="radio" name="impacto" value="1209265702520461" cf-label="Incômodo, mas tem solução alternativa" tabindex="-1">
+                    <input type="radio" name="impacto" value="1209389467800064" cf-label="Não impacta, só queria informar" tabindex="-1">
                 </fieldset>
                 <input cf-questions="Envie um print da tela para entendermos melhor o problema:" type="file" name="anexo" accept="image/*" tabindex="-1" cf-error="Este campo é obrigatório!">
                 <input cf-questions="Qual é o seu e-mail para contato?" type="email" name="email" cf-input-placeholder="Digite seu e-mail..." tabindex="-1" cf-error="Este campo é obrigatório!" required>
-                <input cf-questions="Quem é o seu gestor imediato?" type="text" name="gestor" cf-input-placeholder="Digite o nome do gestor..." tabindex="-1" cf-error="Este campo é obrigatório!" required>
+                <fieldset cf-questions="Quem é o seu gestor imediato?" cf-input-placeholder="Escolha uma das opções abaixo..." cf-error="Este campo é obrigatório!" required>
+                    <input type="radio" name="gestor" value="1209309153842444" cf-label="Ivila Bessa" tabindex="-1">
+                    <input type="radio" name="gestor" value="1209309153842445" cf-label="Arenusa Barros Goulart" tabindex="-1">
+                    <input type="radio" name="gestor" value="1209317734322052" cf-label="Tayro Mendonça" tabindex="-1">
+                    <input type="radio" name="gestor" value="1209364686976672" cf-label="Luis Henrique" tabindex="-1">
+                </fieldset>
             </form>
         </div>
     </div>

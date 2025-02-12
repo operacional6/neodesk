@@ -24,12 +24,12 @@ async function sendToAsana(formJsonData) {
                 name: `Novo TAP: ${tapID}`,
                 notes: formJsonData.descricao || "",
                 custom_fields: {
-                    "1209334302156565": tapID,
-                    "1209378313300633": formJsonData.link,
-                    "1209378317332652": formJsonData.tipo,
-                    "1209378240371680": formJsonData.impacto,
-                    "1209334302156563": formJsonData.email,
-                    "1209334302156561": formJsonData.gestor,
+                    "1209280512501764": tapID,
+                    "1209389467800059": formJsonData.link,
+                    "1209265702520452": formJsonData.tipo,
+                    "1209265702520458": formJsonData.impacto,
+                    "1209228904499048": formJsonData.email,
+                    "1209309153842443": formJsonData.gestor,
                   }
             }
         };

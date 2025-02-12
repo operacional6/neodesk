@@ -14,7 +14,7 @@ async function sendToAsana(formJsonData) {
         const tapID = generateTAPID();
         console.log("Dados recebidos no asana.js:", formJsonData);
 
-        if (!formJsonData.link || !formJsonData.tipo || !formJsonData.impacto || !formJsonData.email || !formJsonData.gestor) {
+        if (!formJsonData.link || !formJsonData.tipo || !formJsonData.descricao ||!formJsonData.impacto || !formJsonData.email || !formJsonData.gestor) {
             throw new Error("Dados incompletos no formData");
         }
 
@@ -22,7 +22,7 @@ async function sendToAsana(formJsonData) {
             data: {
                 projects: projectId,
                 name: `Novo TAP: ${tapID}`,
-                notes: formJsonData.descricao || "",
+                notes: formJsonData.descricao,
                 custom_fields: {
                     "1209280512501764": tapID,
                     "1209389467800059": formJsonData.link,

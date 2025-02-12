@@ -7,14 +7,30 @@ document.addEventListener("DOMContentLoaded", function () {
             if (dto.tag.name === "anexo") {
                 const inputFile = document.querySelector('input[name="anexo"]');
                 if (!inputFile.files.length) {
-                    dto.errorMessage = "Este campo é obrigatório!";
-                    return error();
+                    return error("Este campo é obrigatório!");
                 }
             }
 
             if (dto.tag.name === "link") {
                 const inputLink = document.querySelector('input[name="link"]');
                 inputLink.value = inputLink.value.trim().replace(/(\.com|\.br|\.net|\.org|\.gov|\.edu)(\/.*)?$/, "$1");
+            }
+
+            if (dto.tag.name === "descricao") {
+                const inputDescricao = document.querySelector('input[name="descricao"]');
+                const descricaoValue = inputDescricao.value.trim();
+        
+                if (!descricaoValue) {
+                    return error("Este campo é obrigatório!");
+                }
+
+                if (descricaoValue.length < 20) {
+                    return error("Tamanho mínimo de 20 caracteres!");
+                }
+        
+                if (descricaoValue.length > 300) {
+                    return error("Tamanho máximo de 300 caracteres!");
+                }
             }
 
             success();

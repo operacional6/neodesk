@@ -36,6 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
             success();
         },
         submitCallback: function () {
+            cf.addRobotChatResponse(`Registrando sua solicitação...`);
+            setTimeout(() => {
+                const textarea = document.querySelector("textarea");
+                if (textarea) {
+                    textarea.removeAttribute("placeholder");
+                }
+            }, 100);
             const cfData = cf.getFormData();
             const formData = new FormData();
 
@@ -55,23 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response.data) {
                     console.log("Resposta do servidor:", response.data);
                     cf.addRobotChatResponse(`Obrigado! Seu relato foi registrado com ID ${response.data.tapID}. Nossa equipe irá analisar e entraremos em contato se precisarmos de mais informações.`);
-                    setTimeout(() => {
-                        const textarea = document.querySelector("textarea");
-                        if (textarea) {
-                            textarea.removeAttribute("placeholder");
-                        }
-                    }, 100);
                 }
             })
             .catch(error => {
                 console.error("Erro na comunicação com o servidor:", error);
                 cf.addRobotChatResponse("Ocorreu um erro ao enviar sua solicitação. Por favor, tente novamente mais tarde.");
-                setTimeout(() => {
-                    const textarea = document.querySelector("textarea");
-                    if (textarea) {
-                        textarea.removeAttribute("placeholder");
-                    }
-                }, 100);
             });
         }
     });

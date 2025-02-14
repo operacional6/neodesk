@@ -6,17 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="NeoDesk - Gestão de Solicitações para Produto">
     <meta property="og:description" content="O NeoDesk é a porta de entrada para registros e solicitações da equipe de produto do Sistema Verdes Mares.">
+    <meta property="og:image" content="/img/share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/node_modules/conversational-form/dist/conversational-form.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/conversational-form@1.0.2/dist/conversational-form.min.css">
 </head>
 <body>
     <div class="container">
         <div class="description">
-            <h1>Olá, eu sou o <strong>NeoDesk</strong>! 🤖</h1>
-            <p><strong>Registre sua solicitação</strong> e vamos <strong>resolver isso juntos</strong>!</p>
+            <img src="/img/avatar.png" alt="Avatar do NeoDesk" width="40" height="40">
+            <h1>Olá, eu sou o <strong>NeoDesk</strong>!</h1>
+            <p><strong>Registre sua solicitação</strong> e vamos <strong>resolver isso juntos.</strong></p>
         </div>
         <div id="cf-context">
             <form id="form">
@@ -48,6 +52,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/js/script.js"></script>
-    <script src="/node_modules/conversational-form/dist/conversational-form.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/space10-community/conversational-form@1.0.2/dist/conversational-form.min.js" crossorigin></script>
 </body>
 </html>

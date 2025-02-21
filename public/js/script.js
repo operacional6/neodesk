@@ -50,7 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const fileInput = document.querySelector('input[name="anexo"]');
             if (fileInput?.files.length) {
-                formData.set("anexo", fileInput.files[0], fileInput.files[0].name);
+                Array.from(fileInput.files).forEach(file => {
+                    formData.append("anexo[]", file, file.name);
+                });
             }
             
             axios.post("/asana", formData, {

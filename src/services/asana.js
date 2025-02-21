@@ -27,6 +27,7 @@ async function sendToAsana(formJsonData) {
                     "1209280512501764": tapID,
                     "1209389467800059": formJsonData.link,
                     "1209265702520452": formJsonData.tipo,
+                    "1209465592565001": formJsonData.frequencia,
                     "1209265702520458": formJsonData.impacto,
                     "1209228904499048": formJsonData.email,
                     "1209309153842443": formJsonData.gestor,
@@ -50,10 +51,13 @@ async function sendToAsana(formJsonData) {
         const taskId = taskResponse.data.data.gid;
         console.log("Tarefa criada com sucesso:", taskResponse.data);
 
-        if (formJsonData.anexo) {
-            console.log("Arquivo de anexo encontrado:", formJsonData.anexo.name);
-            const uploadResponse = await uploadFile(formJsonData.anexo, taskId);
-            console.log("Arquivo anexado com sucesso:", uploadResponse.data);
+        if (formJsonData.anexo && formJsonData.anexo.length > 0) {
+            console.log("Arquivos de anexo encontrados:", formJsonData.anexo.map(file => file.name));
+            
+            for (const file of formJsonData.anexo) {
+                const uploadResponse = await uploadFile(file, taskId);
+                console.log("Arquivo anexado com sucesso:", uploadResponse.data);
+            }
         }
 
         return { data: taskResponse.data, tapID };

@@ -41,10 +41,10 @@
         <div id="cf-context">
             <form id="form">
                 <input
-                    cf-questions="Para começarmos, cole o link do sistema onde você encontrou o problema. Isso nos ajuda a identifica-lo rapidamente!"
+                    cf-questions="Cole o link ou informe exatamente em qual sistema, site ou produto deseja registrar sua solicitação."
                     type="text" name="link" cf-input-placeholder="Cole o link do sistema..." tabindex="-1"
                     cf-error="Este campo é obrigatório!" required>
-                <fieldset cf-questions="Qual é o tipo de problema?"
+                <fieldset cf-questions="Qual situação você está relatando?"
                     cf-input-placeholder="Escolha uma das opções acima..." cf-error="Este campo é obrigatório!"
                     required>
                     <input type="radio" name="tipo" value="1209389467800061" cf-label="Algo aparece errado na página"
@@ -55,7 +55,17 @@
                         tabindex="-1">
                     <input type="radio" name="tipo" value="1209265702520456" cf-label="Outro" tabindex="-1">
                 </fieldset>
-                <input cf-questions="Conte-nos o que você precisa ou qual problema deseja relatar:" type="text"
+                <fieldset cf-questions="Com que frequência essa situação ocorre ou ocorreu?"
+                cf-input-placeholder="Escolha uma das opções acima..." cf-error="Este campo é obrigatório!"
+                required>
+                <input type="radio" name="frequencia" value="1209465592565002" cf-label="Aconteceu apenas uma vez"
+                    tabindex="-1">
+                <input type="radio" name="frequencia" value="1209465592565003" cf-label="Às vezes"
+                    tabindex="-1">
+                <input type="radio" name="frequencia" value="1209465592565004" cf-label="Sempre"
+                    tabindex="-1">
+            </fieldset>
+                <input cf-questions="Descreva o que você fez até o erro aparecer, passo a passo." type="text"
                     name="descricao" cf-input-placeholder="Descreva brevemente o problema..." tabindex="-1">
                 <fieldset cf-questions="O quanto isso está atrapalhando seu trabalho?"
                     cf-input-placeholder="Escolha uma das opções acima..." cf-error="Este campo é obrigatório!"

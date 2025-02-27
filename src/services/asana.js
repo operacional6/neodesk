@@ -1,6 +1,7 @@
 const axios = require('axios');
 require('dotenv').config();
 const uploadFile = require('./upload-file');
+const geminiService = require('./gemini');
 
 const token = process.env.ASANA_ACCESS_TOKEN;
 const projectId = process.env.ASANA_PROJECT_ID;
@@ -14,6 +15,14 @@ async function sendToAsana(formJsonData) {
         const tapID = generateTAPID();
         console.log("Dados recebidos no asana.js:", formJsonData);
 
+        const taskStr = `Link ou nome do sistema: ${formJsonData.link}\nDescrição: ${formJsonData.descricao}\nTipo: ${formJsonData.tipo}`;
+
+        const geminiResponse = await geminiService.execute(`Crie um título para essa tarefa com base nessas informações: ${taskStr}. Devolva apenas o título, sem nenhuma outra informação.`);
+
+        if (!geminiResponse) {
+            throw new Error("Não foi possível gerar o nome da tarefa.");
+        }
+
         if (!formJsonData.link || !formJsonData.tipo || !formJsonData.descricao ||!formJsonData.impacto || !formJsonData.email || !formJsonData.gestor) {
             throw new Error("Dados incompletos no formData");
         }
@@ -21,7 +30,7 @@ async function sendToAsana(formJsonData) {
         const taskData = {
             data: {
                 projects: projectId,
-                name: `Novo TAP: ${tapID}`,
+                name: `Novo TAP: ${geminiResponse}`,
                 notes: formJsonData.descricao,
                 custom_fields: {
                     "1209280512501764": tapID,

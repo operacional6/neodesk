@@ -1,18 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
     const cfContext = document.getElementById("cf-context");
+
+    // Cria o checkbox (mas não exibe ainda)
+    const checkboxDiv = document.createElement("div");
+    checkboxDiv.style.textAlign = "center";
+    checkboxDiv.style.marginTop = "8px";
+    checkboxDiv.style.display = "none";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = "nao-tem-imagem-checkbox";
+    checkbox.name = "nao_tem_imagem";
+    checkbox.value = "sim";
+    const label = document.createElement("label");
+    label.htmlFor = "nao-tem-imagem-checkbox";
+    label.textContent = "Não tenho imagem para enviar";
+    checkboxDiv.appendChild(checkbox);
+    checkboxDiv.appendChild(label);
+
+    // Cria o feedback
     const feedbackEl = document.createElement("div");
-            feedbackEl.id = "upload-feedback";
-            feedbackEl.style.fontSize = "12px";
-            feedbackEl.style.color = "#555";
-            feedbackEl.style.textAlign = "center";
-            feedbackEl.style.display = "none";
-            feedbackEl.textContent = "Nenhuma imagem anexada";
-    
-            document.addEventListener("change", function (event) {
+    feedbackEl.id = "upload-feedback";
+    feedbackEl.style.fontSize = "12px";
+    feedbackEl.style.color = "#555";
+    feedbackEl.style.textAlign = "center";
+    feedbackEl.style.display = "none";
+    feedbackEl.textContent = "Nenhuma imagem anexada";
+
+    // Insere checkbox e feedback no DOM
+    cfContext.parentNode.insertBefore(checkboxDiv, cfContext.nextSibling);
+    cfContext.parentNode.insertBefore(feedbackEl, checkboxDiv.nextSibling);
+
+    // Atualiza feedback ao selecionar arquivos
+    document.addEventListener("change", function (event) {
         if (event.target && event.target.type === "file" && event.target.name === "anexo") {
-            cfContext.parentNode.insertBefore(feedbackEl, cfContext.nextSibling);
             const files = event.target.files.length;
             feedbackEl.textContent = files === 1 ? `1 imagem anexada` : `${files} imagens anexadas`;
+            feedbackEl.style.display = files > 0 ? "block" : "none";
         }
     });
 
@@ -22,32 +45,17 @@ document.addEventListener("DOMContentLoaded", function () {
         flowStepCallback: function (dto, success, error) {
 
             if (dto.tag.name === "anexo") {
-                feedbackEl.style.display = "block";
-              } else { 
+                checkboxDiv.style.display = "block";
+                // Feedback só aparece se houver arquivo
+                const fileInput = document.getElementById("input-anexo");
+                feedbackEl.style.display = fileInput.files.length > 0 ? "block" : "none";
+                // Validação: exige imagem ou checkbox marcado
+                if (!fileInput.files.length && !checkbox.checked) {
+                    return error("Envie uma imagem ou marque a opção 'Não tenho imagem para enviar'.");
+                }
+            } else {
+                checkboxDiv.style.display = "none";
                 feedbackEl.style.display = "none";
-              }
-
-            if (dto.tag.name === "anexo") {
-                const inputFile = document.querySelector('input[name="anexo"]');
-                if (!inputFile.files.length) {
-                    return error("Este campo é obrigatório!");
-                }
-            }
-
-            if (dto.tag.name === "link") {
-                const inputLink = document.querySelector('input[name="link"]');
-                const linkValue = inputLink.value.trim();
-
-                if (!linkValue) {
-                    return error("Este campo é obrigatório!");
-                }
-                if (linkValue.length < 2) {
-                    return error("Tamanho mínimo de 2 caracteres!");
-                }
-                if (linkValue.length > 300) {
-                    return error("Tamanho máximo de 300 caracteres!");
-                }
-                inputLink.value = inputLink.value.trim().replace(/(\.com|\.br|\.net|\.org|\.gov|\.edu)(\/.*)?$/, "$1");
             }
 
             if (dto.tag.name === "descricao") {

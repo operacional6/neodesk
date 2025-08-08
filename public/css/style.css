@@ -44,3 +44,7 @@ body {
 cf-chat-response.robot thumb {
     background-image: url('/img/avatar.png') !important;
 }
+
+.cf-checkbox-group-label {
+    display: none;
+}

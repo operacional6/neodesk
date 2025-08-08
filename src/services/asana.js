@@ -15,7 +15,7 @@ async function sendToAsana(formJsonData) {
         const tapID = generateTAPID();
         console.log("Dados recebidos no asana.js:", formJsonData);
 
-        const taskStr = `Link ou nome do sistema: ${formJsonData.link}\nDescrição: ${formJsonData.descricao}\nTipo: ${formJsonData.tipo}`;
+        const taskStr = `Tipo: ${formJsonData.tipo}\nDescrição: ${formJsonData.descricao}`;
 
         const geminiResponse = await geminiService.execute(`Crie um título para essa tarefa com base nessas informações: ${taskStr}. Devolva apenas o título, sem nenhuma outra informação.`);
 
@@ -23,7 +23,7 @@ async function sendToAsana(formJsonData) {
             throw new Error("Não foi possível gerar o nome da tarefa.");
         }
 
-        if (!formJsonData.link || !formJsonData.tipo || !formJsonData.descricao ||!formJsonData.impacto || !formJsonData.email || !formJsonData.gestor) {
+        if (!formJsonData.tipo ||  !formJsonData.frequencia ||!formJsonData.descricao || !formJsonData.anexo_fieldset || !formJsonData.email || !formJsonData.gestor) {
             throw new Error("Dados incompletos no formData");
         }
 
@@ -34,10 +34,8 @@ async function sendToAsana(formJsonData) {
                 notes: formJsonData.descricao,
                 custom_fields: {
                     "1209280512501764": tapID,
-                    "1209389467800059": formJsonData.link,
-                    "1209265702520452": formJsonData.tipo,
+                    "1211009669328981": formJsonData.tipo,
                     "1209465592565001": formJsonData.frequencia,
-                    "1209265702520458": formJsonData.impacto,
                     "1209228904499048": formJsonData.email,
                     "1209309153842443": formJsonData.gestor,
                   }

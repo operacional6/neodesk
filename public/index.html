@@ -40,47 +40,32 @@
         </div>
         <div id="cf-context">
             <form id="form">
-                <input
-                    cf-questions="Cole o link ou informe exatamente em qual sistema, site ou produto deseja registrar sua solicitação."
-                    type="text" name="link" cf-input-placeholder="Cole o link do sistema..." tabindex="-1"
-                    cf-error="Este campo é obrigatório!" required>
-                <fieldset cf-questions="Qual situação você está relatando?"
+                <fieldset cf-questions="Deseja relatar uma falha ou fazer uma solicitação?"
                     cf-input-placeholder="Escolha uma das opções acima..." cf-error="Este campo é obrigatório!"
                     required>
-                    <input type="radio" name="tipo" value="1209389467800061" cf-label="Algo aparece errado na página"
+                    <input type="radio" name="tipo" value="1211009669328982" cf-label="Relatar um problema"
                         tabindex="-1">
-                    <input type="radio" name="tipo" value="1209389467800062" cf-label="O sistema não faz o que deveria"
+                    <input type="radio" name="tipo" value="1211009669328983" cf-label="Quero solicitar algo novo"
                         tabindex="-1">
-                    <input type="radio" name="tipo" value="1209389467800063" cf-label="Lentidão, travamentos"
-                        tabindex="-1">
-                    <input type="radio" name="tipo" value="1209265702520456" cf-label="Outro" tabindex="-1">
                 </fieldset>
-                <fieldset cf-questions="Com que frequência essa situação ocorre ou ocorreu?"
+                <fieldset cf-questions="Com que frequência isso acontece ou é necessário?"
                     cf-input-placeholder="Escolha uma das opções acima..." cf-error="Este campo é obrigatório!"
                     required>
-                    <input type="radio" name="frequencia" value="1209465592565002" cf-label="Aconteceu apenas uma vez"
+                    <input type="radio" name="frequencia" value="1209465592565002" cf-label="Uma única vez"
                         tabindex="-1">
-                    <input type="radio" name="frequencia" value="1209465592565003" cf-label="Às vezes" tabindex="-1">
-                    <input type="radio" name="frequencia" value="1209465592565004" cf-label="Sempre" tabindex="-1">
+                    <input type="radio" name="frequencia" value="1209465592565003" cf-label="De vez em quando"
+                        tabindex="-1">
+                    <input type="radio" name="frequencia" value="1209465592565004" cf-label="Com frequência"
+                        tabindex="-1">
                 </fieldset>
-                <input cf-questions="Descreva o que você fez até o erro aparecer, passo a passo." type="text"
-                    name="descricao" cf-input-placeholder="Descreva brevemente o problema..." tabindex="-1">
-                <fieldset cf-questions="O quanto isso está atrapalhando seu trabalho?"
-                    cf-input-placeholder="Escolha uma das opções acima..." cf-error="Este campo é obrigatório!"
-                    required>
-                    <input type="radio" name="impacto" value="1209265702520459"
-                        cf-label="Bloqueia atividades essenciais" tabindex="-1">
-                    <input type="radio" name="impacto" value="1209265702520460"
-                        cf-label="Prejudica, mas consigo continuar" tabindex="-1">
-                    <input type="radio" name="impacto" value="1209265702520461"
-                        cf-label="Incômodo, mas tem solução alternativa" tabindex="-1">
-                    <input type="radio" name="impacto" value="1209389467800064"
-                        cf-label="Não impacta, só queria informar" tabindex="-1">
-                </fieldset>
-                <input cf-questions="Envie um print da tela para entendermos melhor o problema:" type="file"
-                    name="anexo" accept="image/*"
-                    cf-input-placeholder="Clique no botão para anexar uma ou mais imagens..." tabindex="-1"
-                    cf-error="Este campo é obrigatório!" multiple>
+                <input cf-questions="Descreva o que você fez ou o que precisa, passo a passo" type="text"
+                    name="descricao" cf-input-placeholder="Descreva brevemente..." tabindex="-1">
+
+                <label cf-questions="Envie um print da tela para entendermos melhor o problema:"
+                    cf-error="Este campo é obrigatório!">
+                    <input type="file" name="anexo" id="input-anexo" accept="image/*" multiple>
+                </label>
+
                 <input cf-questions="Qual é o seu e-mail para contato?" type="email" name="email"
                     cf-input-placeholder="Digite seu e-mail..." tabindex="-1" cf-error="Este campo é obrigatório!"
                     required>

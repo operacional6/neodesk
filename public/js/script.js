@@ -1,7 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
     const cfContext = document.getElementById("cf-context");
 
-    // Cria o checkbox (mas não exibe ainda)
+    // Cria o feedback (mantém como está)
+    const feedbackEl = document.createElement("div");
+    feedbackEl.id = "upload-feedback";
+    feedbackEl.style.fontSize = "12px";
+    feedbackEl.style.color = "#555";
+    feedbackEl.style.textAlign = "center";
+    feedbackEl.style.display = "none";
+    feedbackEl.textContent = "Nenhuma imagem anexada";
+    cfContext.parentNode.insertBefore(feedbackEl, cfContext.nextSibling);
+
+    // Cria o checkbox (fora do CF, como antes)
     const checkboxDiv = document.createElement("div");
     checkboxDiv.style.textAlign = "center";
     checkboxDiv.style.marginTop = "8px";
@@ -10,25 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
     checkbox.type = "checkbox";
     checkbox.id = "nao-tem-imagem-checkbox";
     checkbox.name = "nao_tem_imagem";
-    checkbox.value = "sim";
     const label = document.createElement("label");
     label.htmlFor = "nao-tem-imagem-checkbox";
     label.textContent = "Não tenho imagem para enviar";
     checkboxDiv.appendChild(checkbox);
     checkboxDiv.appendChild(label);
-
-    // Cria o feedback
-    const feedbackEl = document.createElement("div");
-    feedbackEl.id = "upload-feedback";
-    feedbackEl.style.fontSize = "12px";
-    feedbackEl.style.color = "#555";
-    feedbackEl.style.textAlign = "center";
-    feedbackEl.style.display = "none";
-    feedbackEl.textContent = "Nenhuma imagem anexada";
-
-    // Insere checkbox e feedback no DOM
-    cfContext.parentNode.insertBefore(checkboxDiv, cfContext.nextSibling);
-    cfContext.parentNode.insertBefore(feedbackEl, checkboxDiv.nextSibling);
+    cfContext.parentNode.insertBefore(checkboxDiv, feedbackEl);
 
     // Atualiza feedback ao selecionar arquivos
     document.addEventListener("change", function (event) {
@@ -39,23 +36,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Monitora a aparição do <cf-input tag-type="file">
+    let lastVisible = false;
+    setInterval(() => {
+        const cfFileInput = document.querySelector('cf-input[tag-type="file"]');
+        if (cfFileInput && !lastVisible) {
+            checkboxDiv.style.display = "block";
+            lastVisible = true;
+        } else if (!cfFileInput && lastVisible) {
+            checkboxDiv.style.display = "none";
+            lastVisible = false;
+        }
+    }, 100);
+
     const cf = window.cf.ConversationalForm.startTheConversation({
         formEl: document.getElementById("form"),
         context: cfContext,
         flowStepCallback: function (dto, success, error) {
 
-            if (dto.tag.name === "anexo") {
-                checkboxDiv.style.display = "block";
-                // Feedback só aparece se houver arquivo
+             if (dto.tag.name === "anexo") {
                 const fileInput = document.getElementById("input-anexo");
-                feedbackEl.style.display = fileInput.files.length > 0 ? "block" : "none";
-                // Validação: exige imagem ou checkbox marcado
-                if (!fileInput.files.length && !checkbox.checked) {
+                const checkbox = document.getElementById("nao-tem-imagem-checkbox");
+                if (!fileInput.files.length && !(checkbox && checkbox.checked)) {
                     return error("Envie uma imagem ou marque a opção 'Não tenho imagem para enviar'.");
                 }
-            } else {
-                checkboxDiv.style.display = "none";
-                feedbackEl.style.display = "none";
             }
 
             if (dto.tag.name === "descricao") {
@@ -101,16 +105,57 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Content-Type": "multipart/form-data"
                 }
             })
-                .then(response => {
-                    if (response.data) {
-                        console.log("Resposta do servidor:", response.data);
-                        cf.addRobotChatResponse(`Obrigado! Seu relato foi registrado com ID ${response.data.tapID}. Nossa equipe irá analisar e entraremos em contato se precisarmos de mais informações.`);
-                    }
-                })
-                .catch(error => {
-                    console.error("Erro na comunicação com o servidor:", error);
-                    cf.addRobotChatResponse("Ocorreu um erro ao enviar sua solicitação. Por favor, tente novamente mais tarde.");
+            .then(response => {
+                if (response.data) {
+                    console.log("Resposta do servidor:", response.data);
+                    cf.addRobotChatResponse(`Obrigado! Seu relato foi registrado com ID ${response.data.tapID}. Nossa equipe irá analisar e entraremos em contato se precisarmos de mais informações.`);
+                }
+            })
+            .catch(error => {
+                console.error("Erro na comunicação com o servidor:", error);
+                cf.addRobotChatResponse("Ocorreu um erro ao enviar sua solicitação. Por favor, tente novamente mais tarde.");
+            });
+        }
+    });
+    checkbox.addEventListener("change", function () {
+        if (checkbox.checked) {
+            console.log('Checkbox marcado - tentando avançar...');
+            
+            //Simula múltiplos eventos para garantir que funcione
+            const cfFileInput = document.querySelector('cf-input[tag-type="file"] input');
+            if (cfFileInput) {
+                cfFileInput.focus();
+                cfFileInput.value = "";
+                
+                // Dispara múltiplos eventos em sequência
+                const events = [
+                    new Event('input', { bubbles: true }),
+                    new Event('change', { bubbles: true }),
+                    new KeyboardEvent('keypress', {
+                        bubbles: true,
+                        cancelable: true,
+                        key: 'Enter',
+                        code: 'Enter',
+                        keyCode: 13,
+                        which: 13
+                    }),
+                    new KeyboardEvent('keyup', {
+                        bubbles: true,
+                        cancelable: true,
+                        key: 'Enter',
+                        code: 'Enter',
+                        keyCode: 13,
+                        which: 13
+                    })
+                ];
+                
+                events.forEach((event, index) => {
+                    setTimeout(() => {
+                        cfFileInput.dispatchEvent(event);
+                    }, index * 50);
                 });
+                console.log('Eventos disparados para avançar...');
+            }
         }
     });
 });

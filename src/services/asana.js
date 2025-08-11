@@ -23,7 +23,7 @@ async function sendToAsana(formJsonData) {
             throw new Error("Não foi possível gerar o nome da tarefa.");
         }
 
-        if (!formJsonData.tipo ||  !formJsonData.frequencia ||!formJsonData.descricao || !formJsonData.anexo_fieldset || !formJsonData.email || !formJsonData.gestor) {
+        if (!formJsonData.tipo ||  !formJsonData.frequencia ||!formJsonData.descricao || !formJsonData.email || !formJsonData.gestor) {
             throw new Error("Dados incompletos no formData");
         }
 

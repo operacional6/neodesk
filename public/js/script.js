@@ -54,7 +54,23 @@ document.addEventListener("DOMContentLoaded", function () {
         context: cfContext,
         flowStepCallback: function (dto, success, error) {
 
-             if (dto.tag.name === "anexo") {
+            if (dto.tag.name === "link") {
+                const inputLink = document.querySelector('input[name="link"]');
+                const linkValue = inputLink.value.trim();
+
+                if (!linkValue) {
+                    return error("Este campo é obrigatório!");
+                }
+                if (linkValue.length < 2) {
+                    return error("Tamanho mínimo de 2 caracteres!");
+                }
+                if (linkValue.length > 300) {
+                    return error("Tamanho máximo de 300 caracteres!");
+                }
+                inputLink.value = inputLink.value.trim().replace(/(\.com|\.br|\.net|\.org|\.gov|\.edu)(\/.*)?$/, "$1");
+            }
+
+            if (dto.tag.name === "anexo") {
                 const fileInput = document.getElementById("input-anexo");
                 const checkbox = document.getElementById("nao-tem-imagem-checkbox");
                 if (!fileInput.files.length && !(checkbox && checkbox.checked)) {

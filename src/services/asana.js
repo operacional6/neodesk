@@ -15,7 +15,7 @@ async function sendToAsana(formJsonData) {
         const tapID = generateTAPID();
         console.log("Dados recebidos no asana.js:", formJsonData);
 
-        const taskStr = `Tipo: ${formJsonData.tipo}\nDescrição: ${formJsonData.descricao}`;
+        const taskStr = `Link ou nome do sistema: ${formJsonData.link}\nDescrição: ${formJsonData.descricao}\nTipo: ${formJsonData.tipo}`;
 
         const geminiResponse = await geminiService.execute(`Crie um título para essa tarefa com base nessas informações: ${taskStr}. Devolva apenas o título, sem nenhuma outra informação.`);
 
@@ -34,6 +34,7 @@ async function sendToAsana(formJsonData) {
                 notes: formJsonData.descricao,
                 custom_fields: {
                     "1209280512501764": tapID,
+                    "1209389467800059": formJsonData.link,
                     "1211009669328981": formJsonData.tipo,
                     "1209465592565001": formJsonData.frequencia,
                     "1209228904499048": formJsonData.email,

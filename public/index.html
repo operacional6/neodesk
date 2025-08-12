@@ -40,7 +40,11 @@
         </div>
         <div id="cf-context">
             <form id="form">
-                <fieldset cf-questions="Deseja relatar uma falha ou fazer uma solicitação?"
+                <input
+                    cf-questions="Cole o link ou informe exatamente em qual sistema, site ou produto deseja registrar sua solicitação."
+                    type="text" name="link" cf-input-placeholder="Cole o link do sistema" tabindex="-1"
+                    cf-error="Este campo é obrigatório!" required>
+                <fieldset cf-questions="Deseja relatar um problema ou fazer uma solicitação?"
                     cf-input-placeholder="Escolha uma das opções" cf-error="Este campo é obrigatório!"
                     required>
                     <input type="radio" name="tipo" value="1211009669328982" cf-label="Relatar um problema"

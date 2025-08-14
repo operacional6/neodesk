@@ -35,7 +35,7 @@ async function sendToAsana(formJsonData) {
                 custom_fields: {
                     "1209280512501764": tapID,
                     "1209389467800059": formJsonData.link,
-                    "1209265702520452": formJsonData.tipo,
+                    "1211044923323983": formJsonData.tipo,
                     "1209465592565001": formJsonData.frequencia,
                     "1209265702520458": formJsonData.impacto,
                     "1209228904499048": formJsonData.email,
